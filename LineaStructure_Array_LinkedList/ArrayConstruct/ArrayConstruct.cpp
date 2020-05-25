@@ -267,6 +267,11 @@ bool remove(Array* pArr, int pos, int* pVar)
 
 bool contains(Array* pArr, int var, int* pPos)
 {
+    if (isEmpty(pArr))
+    {
+        puts("数组为空！");
+        return false;
+    }
     for (int i = 0; i < pArr->length; ++i)
     {
         if (var == pArr->pArrHead[i])
@@ -281,6 +286,11 @@ bool contains(Array* pArr, int var, int* pPos)
 
 Array reverse(Array* pArr)
 {
+    if (isEmpty(pArr))
+    {
+        puts("数组为空，无法删除！");
+        return *pArr;
+    }
     Array newArr = *pArr;
     /*
     数组的首地址以指针形式存储,
@@ -306,6 +316,11 @@ Array reverse(Array* pArr)
 
 Array sort(Array* pArr)
 {
+    if (isEmpty(pArr))
+    {
+        puts("数组为空，无法删除！");
+        return *pArr;
+    }
     Array newArr = *pArr;
     int* head = (int*)malloc(sizeof(int) * pArr->maxLenth);
     memcpy(head, pArr->pArrHead, sizeof(int) * pArr->maxLenth);
