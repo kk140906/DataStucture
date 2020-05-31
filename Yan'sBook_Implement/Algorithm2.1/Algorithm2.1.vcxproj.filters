@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Example2.1.cpp">
+    <ClCompile Include="..\src\LinkedList.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\LinkedList.cpp">
+    <ClCompile Include="Algorithm2.1.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
