@@ -232,7 +232,7 @@ bool ArrayList_Remove(ArrayList* l, int pos, ArrayListType* var)
         return false;
     }
     // 此处利用'lazy'的方式,当移除后的元素个数小于容量的1/4就调整大小,防止后续频繁插入移除时内存频繁分配
-    if (l->isAutoResize && l->size <= (int)(l->capacity / 4) && l->size >= (int)(l->capacity / 2) )
+    if (l->isAutoResize && l->size <= l->capacity / 4 && l->capacity / 2 != 0)
     {
         l->capacity /= 2;
         ArrayListType* tempBase;
