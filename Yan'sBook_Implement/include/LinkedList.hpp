@@ -118,9 +118,7 @@ void LinkedList_Init(LinkedList* l, int dataBytes)
  */ 
 bool LinkedList_AddLast(LinkedList* l, LinkedListType var)
 {
-    if (LinkedList_Insert(l,-1,var))
-        return true;
-    return false;
+    return LinkedList_Insert(l,-1,var);
 }
 
 /**
@@ -128,9 +126,7 @@ bool LinkedList_AddLast(LinkedList* l, LinkedListType var)
  */ 
 bool LinkedList_AddFirst(LinkedList* l, LinkedListType var)
 {
-    if (LinkedList_Insert(l,1,var))
-        return true;
-    return false;
+    return LinkedList_Insert(l,1,var);
 }
 
 /**
@@ -174,9 +170,7 @@ bool LinkedList_Insert(LinkedList* l, int pos, LinkedListType var)
  */ 
 bool LinkedList_RemoveLast(LinkedList* l, LinkedListType* var)
 {
-    if (LinkedList_Remove(l,-1,var))
-        return true;
-    return false;
+    return LinkedList_Remove(l,-1,var);
 }
 
 /**
@@ -184,9 +178,7 @@ bool LinkedList_RemoveLast(LinkedList* l, LinkedListType* var)
  */ 
 bool LinkedList_RemoveFirst(LinkedList* l, LinkedListType* var)
 {
-    if (LinkedList_Remove(l,1,var))
-        return true;
-    return false;
+    return LinkedList_Remove(l,1,var);
 }
 
 /**
@@ -233,9 +225,7 @@ bool LinkedList_Remove(LinkedList* l, int pos, LinkedListType* var)
  */ 
 bool LinkedList_SetLastData(LinkedList* l, LinkedListType var)
 {
-    if (LinkedList_SetData(l,-1,var))
-        return true;
-    return false;
+    return LinkedList_SetData(l,-1,var);
 }
 
 /**
@@ -243,9 +233,7 @@ bool LinkedList_SetLastData(LinkedList* l, LinkedListType var)
  */ 
 bool LinkedList_SetFirstData(LinkedList* l, LinkedListType var)
 {
-    if (LinkedList_SetData(l,1,var))
-        return true;
-    return false;
+    return LinkedList_SetData(l,1,var);
 }
 
 /**
@@ -284,9 +272,7 @@ bool LinkedList_SetData(LinkedList* l, int pos, LinkedListType var)
  */ 
 bool LinkedList_GetLastData(LinkedList* l, LinkedListType* var)
 {
-    if (LinkedList_GetData(l,-1,var))
-        return true;
-    return false;
+    return LinkedList_GetData(l,-1,var);
 }
 
 /**
@@ -294,9 +280,7 @@ bool LinkedList_GetLastData(LinkedList* l, LinkedListType* var)
  */ 
 bool LinkedList_GetFirstData(LinkedList* l, LinkedListType* var)
 {
-    if (LinkedList_GetData(l,1,var))
-        return true;
-    return false;
+    return LinkedList_GetData(l,1,var);
 }
 
 /**

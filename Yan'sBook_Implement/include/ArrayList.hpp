@@ -130,9 +130,7 @@ void ArrayList_Init(ArrayList* l, int dataBytes, int capacity, bool isAutoResize
  */ 
 bool ArrayList_AddLast(ArrayList* l, ArrayListType var)
 {
-    if (ArrayList_Insert(l,-1,var))
-        return true;
-    return false;
+    return ArrayList_Insert(l,-1,var);
 }
 
 /**
@@ -140,9 +138,7 @@ bool ArrayList_AddLast(ArrayList* l, ArrayListType var)
  */ 
 bool ArrayList_AddFirst(ArrayList* l, ArrayListType var)
 {
-    if (ArrayList_Insert(l,1,var))
-        return true;
-    return false;
+    return ArrayList_Insert(l,1,var);
 }
 
 /**
@@ -200,9 +196,7 @@ bool ArrayList_Insert(ArrayList* l, int pos, ArrayListType var)
  */ 
 bool ArrayList_RemoveLast(ArrayList* l, ArrayListType* var)
 {
-    if (ArrayList_Remove(l,-1,var))
-        return true;
-    return false;
+    return ArrayList_Remove(l,-1,var);
 }
 
 /**
@@ -210,9 +204,7 @@ bool ArrayList_RemoveLast(ArrayList* l, ArrayListType* var)
  */ 
 bool ArrayList_RemoveFirst(ArrayList* l, ArrayListType* var)
 {
-    if (ArrayList_Remove(l,1,var))
-        return true;
-    return false;
+    return ArrayList_Remove(l,1,var);
 }
 
 /**
@@ -265,9 +257,7 @@ bool ArrayList_Remove(ArrayList* l, int pos, ArrayListType* var)
  */ 
 bool ArrayList_SetLastData(ArrayList* l, ArrayListType var)
 {
-    if (ArrayList_SetData(l,-1,var))
-        return true;
-    return false;
+    return ArrayList_SetData(l,-1,var);
 }
 
 /**
@@ -275,9 +265,7 @@ bool ArrayList_SetLastData(ArrayList* l, ArrayListType var)
  */ 
 bool ArrayList_SetFirstData(ArrayList* l, ArrayListType var)
 {
-    if (ArrayList_SetData(l,1,var))
-        return true;
-    return false;
+    return ArrayList_SetData(l,1,var);
 }
 
 /**
@@ -308,9 +296,7 @@ bool ArrayList_SetData(ArrayList* l, int pos, ArrayListType var)
  */ 
 bool ArrayList_GetLastData(ArrayList* l, ArrayListType* var)
 {
-    if (ArrayList_GetData(l,-1,var))
-        return true;
-    return false;
+    return ArrayList_GetData(l,-1,var);
 }
 
 /**
@@ -318,9 +304,7 @@ bool ArrayList_GetLastData(ArrayList* l, ArrayListType* var)
  */ 
 bool ArrayList_GetFirstData(ArrayList* l, ArrayListType* var)
 {
-    if (ArrayList_GetData(l,1,var))
-        return true;
-    return false;
+    return ArrayList_GetData(l,1,var);
 }
 
 /**
