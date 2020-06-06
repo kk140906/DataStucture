@@ -18,12 +18,9 @@
     <ClCompile Include="Algorithm2.2.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\LinkedList.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\LinkedList.h">
+    <ClInclude Include="..\include\LinkedList.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

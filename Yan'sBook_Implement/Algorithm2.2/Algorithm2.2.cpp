@@ -1,4 +1,4 @@
-﻿#include "../include/LinkedList.h"
+﻿#include "../include/LinkedList.hpp"
 /*
     线性表LA、LB按照非递减有序排列,实现LA、LB归并为LC仍然按照非递减有序排列
     LA = (3,5,8,11);
@@ -6,138 +6,92 @@
     LC = (2,3,5,6,8,8,8,11,11,15,20); 
 */
 
-List unionSets(List* l1, List* l2);
+LinkedList unionSets(LinkedList* l1, LinkedList* l2);
+void showListAllData(LinkedList* l, char* title);
+
 int main()
 {
-    int A[] = {3,5,8,11};
-    int B[] = {2,6,8,8,11,15,20};
-    List LA, LB,LC;
-    init(&LA, A, 4);
-    init(&LB, B, 7);
-    puts("A链表内容为:");
-    show(&LA);
-    puts("B链表内容为:");
-    show(&LB);
+    int sizeA = 4;
+    int sizeB = 7;
+    int A[] = { 3,5,8,11 };
+    int B[] = { 2,6,8,8,11,15,20 };
+    LinkedList LA, LB;
+    LinkedList_Func->init(&LA, sizeof(A[0]));
+    LinkedList_Func->init(&LB, sizeof(B[0]));
+    for (int i = 0; i < sizeA; ++i)
+    {
+        LinkedList_Func->addLast(&LA, (LinkedListType)(A + i));
+    }
+    showListAllData(&LA, (char*)"A链表内容:");
+    for (int i = 0; i < sizeB; ++i)
+    {
+        LinkedList_Func->addLast(&LB, (LinkedListType)(B + i));
+    }
+    showListAllData(&LB, (char*)"B链表内容:");
 
-    LC = unionSets(&LA, &LB);
-    puts("A链表与B链表求并集后C链表内容为:");
-    show(&LC);
+    LinkedList LC = unionSets(&LA, &LB);
+    showListAllData(&LC, (char*)"A链表与B链表求并集后C链表内容为:");
     return 0;
 }
 
-List unionSets(List* l1, List* l2)
+
+void showListAllData(LinkedList* l, char* title)
 {
-    List list;
-    init(&list,NULL, 0);
+    puts(title);
+    Node* next = l->pHead->pNext;
+    while (next)
+    {
+        printf("%d\t", *(int*)next->data);
+        next = next->pNext;
+    }
+    puts("\n");
+}
+
+/**
+ * L1,l2都是已经排序完毕的非递减序列
+ * 直接循环比较,保证元素个数少的先排完序，然后再把元素个数多剩余部门直接添加到新的列表后面
+ */
+LinkedList unionSets(LinkedList* l1, LinkedList* l2)
+{
+    LinkedList list;
+    LinkedList_Func->init(&list, sizeof(l1->dataBytes));
     int size = 0;
-    Node* headList1;
-    Node* headList2;
-    if (l1->size > l2->size)
+    int l1_pos = 1, l2_pos = 1;
+    LinkedListType l1_data, l2_data;
+    while (l1_pos <= l1->size && l2_pos <= l2->size)
     {
-        headList1 = l1->pHead->pNext;
-        headList2 = l2->pHead->pNext;
-    }
-    else
-    {
-        headList1 = l2->pHead->pNext;
-        headList2 = l1->pHead->pNext;
-    }
-    //外层循环一定要是长度较长的
-    //如果外层较短，当外层结束后，内层剩余的结点就无法添加到新的链表上
-    while (headList1)
-    {
-        while (headList2)
+        if (!LinkedList_Func->getData(l1, l1_pos, &l1_data))
+            exit(-1);
+        if (!LinkedList_Func->getData(l2, l2_pos, &l2_data))
+            exit(-1);
+        if (memcmp(l1_data, l2_data, l1->dataBytes) <= 0)
         {
-            if (headList1->data >= headList2->data)
-            {
-                append(&list, headList2->data);
-                headList2 = headList2->pNext;
-                ++size;
-            }
-            else
-                break;
+            LinkedList_Func->addLast(&list, l1_data);
+            ++l1_pos;
         }
-        append(&list, headList1->data);
-        headList1 = headList1->pNext;
-        ++size;
+        else
+        {
+            LinkedList_Func->addLast(&list, l2_data);
+            ++l2_pos;
+        }
     }
-    list.size = size;
+
+    while (l1_pos <= l1->size)
+    {
+        if (!LinkedList_Func->getData(l1, l1_pos, &l1_data))
+            exit(-1);
+        LinkedList_Func->addLast(&list, l1_data);
+        ++l1_pos;
+    }
+
+    while (l2_pos <= l2->size)
+    {
+        if (!LinkedList_Func->getData(l2, l2_pos, &l2_data))
+            exit(-1);
+        LinkedList_Func->addLast(&list, l2_data);
+        ++l2_pos;
+    }
+
     return list;
 }
 
-//指针方式重新创建新的链表
-//List* unionSets(List* l1, List* l2);
-//List* unionSets(List* l1, List* l2)
-//{
-//    List* l = (List*)malloc(sizeof(List));
-//    if (!l)
-//    {
-//        puts("内存分配失败!");
-//        exit(-1);
-//    }
-//
-//    Node* head = (Node*)malloc(sizeof(Node));
-//    if (!head)
-//    {
-//        puts("内存分配失败!");
-//        exit(-1);
-//    }
-//    Node* tail = head;
-//    tail->pNext = NULL;
-//
-//
-//    int size = 0;
-//    Node* headList1;
-//    Node* headList2;
-//    Node* node;
-//    if (l1->size > l2->size)
-//    {
-//        headList1 = l1->pHead->pNext;
-//        headList2 = l2->pHead->pNext;
-//    }
-//    else
-//    {
-//        headList1 = l2->pHead->pNext;
-//        headList2 = l1->pHead->pNext;
-//    }
-//    
-//    while (headList1)
-//    {
-//        while (headList2)
-//        {
-//            node = (Node*)malloc(sizeof(Node));
-//            if (!node)
-//            {
-//                puts("内存分配失败!");
-//                exit(-1);
-//            }
-//            if (headList1->data >= headList2->data)
-//            {
-//                node->data = headList2->data;
-//                node->pNext = NULL;
-//                tail->pNext = node;
-//                tail = node;
-//                headList2 = headList2->pNext;
-//                ++size;
-//            }
-//            else
-//                break;
-//        }
-//        node = (Node*)malloc(sizeof(Node));
-//        if (!node)
-//        {
-//            puts("内存分配失败!");
-//            exit(-1);
-//        }
-//        node->data = headList1->data;
-//        node->pNext = NULL;
-//        tail->pNext = node;
-//        tail = node;
-//        headList1 = headList1->pNext;
-//        ++size;
-//    }
-//    l->pHead = head;
-//    l->pTail = tail;
-//    l->size = size;
-//    return l;
-//}
