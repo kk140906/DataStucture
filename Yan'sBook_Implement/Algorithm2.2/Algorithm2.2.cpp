@@ -54,7 +54,7 @@ void showListAllData(LinkedList* l, char* title)
 LinkedList unionSets(LinkedList* l1, LinkedList* l2)
 {
     LinkedList list;
-    LinkedList_Func->init(&list, sizeof(l1->dataBytes));
+    LinkedList_Func->init(&list, l1->dataBytes);
     int size = 0;
     int l1_pos = 1, l2_pos = 1;
     LinkedListType l1_data, l2_data;
