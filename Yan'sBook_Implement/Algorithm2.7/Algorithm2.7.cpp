@@ -47,7 +47,7 @@ void showListAllData(ArrayList* l, char* title)
 
 /**
  * L1,l2都是已经排序完毕的非递减序列
- * 直接循环比较,保证元素个数少的先排完序，然后再把元素个数多剩余部门直接添加到新的列表后面
+ * 直接循环比较,保证元素个数少的先排完序，然后再把元素个数多剩余部分直接添加到新的列表后面
  */
 ArrayList unionSets(ArrayList* l1, ArrayList* l2)
 {

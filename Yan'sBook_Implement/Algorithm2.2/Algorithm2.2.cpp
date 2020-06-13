@@ -1,9 +1,11 @@
 ﻿#include "../include/LinkedList.hpp"
 /*
-    线性表LA、LB按照非递减有序排列,实现LA、LB归并为LC仍然按照非递减有序排列
-    LA = (3,5,8,11);
-    LB = (2,6,8,8,11,15,20);
-    LC = (2,3,5,6,8,8,8,11,11,15,20); 
+* 线性表LA、LB按照非递减有序排列,实现LA、LB归并为LC仍然按照非递减有序排列
+*   LA = (3,5,8,11);
+*   LB = (2,6,8,8,11,15,20);
+*   LC = (2,3,5,6,8,8,8,11,11,15,20); 
+* 时间复杂度:O(LA) + O(LB)
+* 空间复杂度:O(LA) + O(LB) + O(LC)
 */
 
 LinkedList unionSets(LinkedList* l1, LinkedList* l2);
@@ -49,7 +51,7 @@ void showListAllData(LinkedList* l, char* title)
 
 /**
  * L1,l2都是已经排序完毕的非递减序列
- * 直接循环比较,保证元素个数少的先排完序，然后再把元素个数多剩余部门直接添加到新的列表后面
+ * 直接循环比较,保证元素个数少的先排完序，然后再把元素个数多剩余部分直接添加到新的列表后面
  */
 LinkedList unionSets(LinkedList* l1, LinkedList* l2)
 {
